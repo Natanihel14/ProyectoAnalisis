@@ -1,9 +1,7 @@
--- crear nuestra base de datos
 create database bd_sistema_ventas;
--- usamos la base de datos
+
 use bd_sistema_ventas;
 
--- crear tabla usuarios
 create table tb_usuario(
 idUsuario int (11) auto_increment primary key,
 nombre varchar(30) not null,
@@ -14,7 +12,6 @@ telefono varchar(15) not null,
 estado int(1) not null
 );
 
--- crear tabla cliente
 create table tb_cliente(
 idCliente int (11) auto_increment primary key,
 nombre varchar(30) not null,
@@ -25,14 +22,12 @@ direccion varchar(100) not null,
 estado int(1) not null
 );
 
--- crear tabla categoria
 create table tb_categoria(
 idCategoria int (11) auto_increment primary key,
 descripcion varchar(200) not null,
 estado int(1) not null
 );
 
--- crear tabla producto
 create table tb_producto(
 idProducto int (11) auto_increment primary key,
 nombre varchar(100) not null,
@@ -44,7 +39,6 @@ idCategoria int(11) not null,
 estado int(1) not null
 );
 
--- crear tabla cabecera de venta
 create table tb_cabecera_venta(
 idCabeceraVenta int (11) auto_increment primary key,
 idCliente int(11) not null,
@@ -53,7 +47,6 @@ fechaVenta date not null,
 estado int(1) not null
 );
 
--- crear tabla detalle de venta
 create table tb_detalle_venta(
 idDetalleVenta int (11) auto_increment primary key,
 idCabeceraVenta int (11) not null,
@@ -66,8 +59,3 @@ iva double(10,2) not null,
 totalPagar double(10,2) not null,
 estado int(1) not null
 );
-
--- mostrar todas las tablas de mi base de datos
-show tables;
-
-
