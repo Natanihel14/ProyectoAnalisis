@@ -1,6 +1,12 @@
 package vista;
 
+import controlador.Ctrl_Usuario;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import modelo.Usuario;
+
 
 /**
  *
@@ -14,6 +20,11 @@ public class FrmLogin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Login - SISTEMA DE VENTAS");
         this.setSize(new Dimension(700, 500));
+    }
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/ventas.png"));
+        return retValue;
     }
 
     /**
@@ -38,6 +49,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -61,12 +73,28 @@ public class FrmLogin extends javax.swing.JFrame {
                 txt_usuarioActionPerformed(evt);
             }
         });
+        txt_usuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_usuarioKeyPressed(evt);
+            }
+        });
         getContentPane().add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 173, -1));
+
+        txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_passwordKeyPressed(evt);
+            }
+        });
         getContentPane().add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 173, -1));
 
         jButton_IniciarSesion.setBackground(new java.awt.Color(51, 51, 255));
         jButton_IniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton_IniciarSesion.setText("INICIAR SESION");
+        jButton_IniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_IniciarSesionActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton_IniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 150, 33));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrito1.png"))); // NOI18N
@@ -90,6 +118,22 @@ public class FrmLogin extends javax.swing.JFrame {
     private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usuarioActionPerformed
+
+    private void jButton_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IniciarSesionActionPerformed
+        this.Login();
+    }//GEN-LAST:event_jButton_IniciarSesionActionPerformed
+
+    private void txt_usuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usuarioKeyPressed
+        if(evt.getKeyCode() ==evt.VK_ENTER){
+        txt_password.requestFocus();
+        }
+    }//GEN-LAST:event_txt_usuarioKeyPressed
+
+    private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
+        if(evt.getKeyCode() ==evt.VK_ENTER){
+        this.Login();
+        }
+    }//GEN-LAST:event_txt_passwordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -139,4 +183,23 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
+
+//
+private void Login (){
+    if(!txt_usuario.getText().isEmpty() && !txt_password.getText().isEmpty()){
+        
+        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+        Usuario usuario = new Usuario();
+        usuario.setUsuario(txt_usuario.getText().trim());
+        usuario.setPassword(txt_password.getText().trim());
+        if(controlUsuario.loginUser(usuario)){
+          JOptionPane.showMessageDialog(null, "Login Correcto...");  
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuario o Clave Incorrecto");
+        }
+        
+    }else{
+        JOptionPane.showMessageDialog(null, "Ingrese sus credenciales");
+    }
+}    
 }
