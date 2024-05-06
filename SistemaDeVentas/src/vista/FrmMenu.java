@@ -12,7 +12,7 @@ import javax.swing.JDesktopPane;
  * @author William
  */
 public class FrmMenu extends javax.swing.JFrame {
-    
+
     public static JDesktopPane jDesktopPaneMenu;
 
     /**
@@ -20,13 +20,13 @@ public class FrmMenu extends javax.swing.JFrame {
      */
     public FrmMenu() {
         initComponents();
-        this.setSize(new Dimension(1200, 700) );
+        this.setSize(new Dimension(1200, 700));
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         this.setTitle("Sistema de Ventas");
         this.setLayout(null);
         jDesktopPaneMenu = new JDesktopPane();
-        
+
         int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
         this.jDesktopPaneMenu.setBounds(0, 0, ancho, (alto - 100));
@@ -122,6 +122,11 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuItem_NuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo-producto.png"))); // NOI18N
         jMenuItem_NuevoProducto.setText("Nuevo Producto");
         jMenuItem_NuevoProducto.setPreferredSize(new java.awt.Dimension(200, 30));
+        jMenuItem_NuevoProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_NuevoProductoActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem_NuevoProducto);
 
         jMenuItem_GestionarProducto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -147,6 +152,11 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuItem_NuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo-cliente.png"))); // NOI18N
         jMenuItem_NuevoCliente.setText("Nuevo Cliente");
         jMenuItem_NuevoCliente.setPreferredSize(new java.awt.Dimension(180, 30));
+        jMenuItem_NuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_NuevoClienteActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem_NuevoCliente);
 
         jMenuItem_GestionarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -274,6 +284,18 @@ public class FrmMenu extends javax.swing.JFrame {
         jDesktopPaneMenu.add(intercategoria);
         intercategoria.setVisible(true);
     }//GEN-LAST:event_jMenuItem_NuevaCategoriaActionPerformed
+
+    private void jMenuItem_NuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_NuevoProductoActionPerformed
+        InterProducto InterProducto = new InterProducto(); //Revisar si dice "cannot find symbol"
+        jDesktopPaneMenu.add(InterProducto);
+        InterProducto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem_NuevoProductoActionPerformed
+
+    private void jMenuItem_NuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_NuevoClienteActionPerformed
+        InterCliente InterCliente = new InterCliente(); //Revisar si dice "cannot find symbol"
+        jDesktopPaneMenu.add(InterCliente);
+        InterCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem_NuevoClienteActionPerformed
 
     /**
      * @param args the command line arguments
